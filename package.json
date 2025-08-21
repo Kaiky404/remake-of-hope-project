@@ -1,0 +1,30 @@
+{
+  "name": "hope-website-remake",
+  "version": "1.0.0",
+  "description": "mainpage, login and a system",
+  "homepage": "https://github.com/Kaiky404/remake-of-hope-project#readme",
+  "bugs": {
+    "url": "https://github.com/Kaiky404/remake-of-hope-project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaiky404/remake-of-hope-project.git"
+  },
+  "license": "ISC",
+  "author": "Kaiky404",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookieparser": "^0.1.0",
+    "express": "^5.1.0",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
