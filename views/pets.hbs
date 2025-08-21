@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Management</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Pet Management System</h1>
+    <nav>
+        <a href="/auth/logout">Logout</a> | <a href="/">Home</a>
+    </nav>
+
+    <h2>Add a Pet</h2>
+    <form action="/pets/add" method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" required><br>
+        <label>Type:</label>
+        <input type="text" name="type" required><br>
+        <label>Age:</label>
+        <input type="number" name="age" required><br>
+        <button type="submit">Add Pet</button>
+    </form>
+
+    <h2>Pets List</h2>
+    <ul>
+        {{#each pets}}
+            <li>{{this.name}} - {{this.type}} - {{this.age}} years old</li>
+        {{/each}}
+    </ul>
+</body>
+</html>

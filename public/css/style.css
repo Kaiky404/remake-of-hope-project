@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    padding: 20px;
+    flex: 1;
+}
+
+nav a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: blue;
+}
+
+form input {
+    margin-bottom: 10px;
+}
+
+header {
+    padding: 20px;
+}
+
+footer {
+    padding: 20px;
+    display: block;
+    margin-top: auto;
+}

@@ -1,33 +1,19 @@
-// server.js
 import express from 'express';
-import path from 'path';
-import hbs from 'hbs';
-import session from 'express-session';
-import cookieParser from 'cookie-parser';
+const router = express.Router();
 
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+// Main page
+router.get('/', (req, res) => {
+    res.render('main', { title: 'Main Page' });
+});
 
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
+// About page
+router.get('/about', (req, res) => {
+    res.render('about', { title: 'About Page' });
+});
 
-// Session pra auth
-app.use(cookieParser());
-app.use(session({
-    secret: 'segredo123',
-    resave: false,
-    saveUninitialized: true,
-}));
+// Credits page
+router.get('/credits', (req, res) => {
+    res.render('credits', { title: 'Credits Page' });
+});
 
-// Rotas
-import indexRouter from './routes/index.js';
-import authRouter from './routes/auth.js';
-import petsRouter from './routes/pets.js';
-
-app.use('/', indexRouter);
-app.use('/auth', authRouter);
-app.use('/pets', petsRouter);
-
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+export default router;
