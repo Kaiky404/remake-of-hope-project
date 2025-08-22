@@ -12,14 +12,18 @@
         <h1>Register</h1>
         <form action="/auth/register" method="POST">
             <label>Username:</label>
-            <input type="text" name="username" required><br>
+            <input type="text" name="username" value="{{username}}" required><br>
             <label>Email:</label>
-            <input type="email" name="email" required><br>
+            <input type="email" name="email" value="{{email}}" required><br>
             <label>Password:</label>
             <input type="password" name="password" required><br>
             <label>Repeat Password:</label>
-            <input type="password" name="password-again" required><br>
+            <input type="password" name="passwordAgain" required><br>
             <button type="submit">Register</button>
+
+            {{#if error}}
+                <p style="color:red">{{error}}</p>
+            {{/if}}
         </form>
     </main>
 

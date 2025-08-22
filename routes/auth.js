@@ -1,39 +1,91 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import User from '../models/user.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const router = express.Router();
-
-// Simulated DB
-const users = [];
 
 // Register page
 router.get('/register', (req, res) => res.render('register', { title: 'Register Page' }));
 
-// Register user
+// Register User
 router.post('/register', async (req, res) => {
-    const { username, password } = req.body;
+
+    let { username, email, password, passwordAgain } = req.body;
+    
+    email = email.trim().toLowerCase();
+    
+    console.log("Registering user:", username, email);
+    
+    if (password !== passwordAgain) {
+        return res.render("register", { 
+            title: "Register Page", 
+            error: "Passwords do not match",
+            username,
+            email
+        });
+    }
+    
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+        return res.render("register", { 
+            title: "Register Page", 
+            error: "User with this email already exists",
+            username,
+            email
+        });
+    }
+    
     const hashedPassword = await bcrypt.hash(password, 10);
-    users.push({ username, password: hashedPassword });
+    try {
+        await User.create({ username, email, password: hashedPassword });
+    } catch (err) {
+        console.error("Error creating user:", err);
+    }
     res.redirect('/auth/login');
 });
 
-// Login page
+
+
+// Page Login
 router.get('/login', (req, res) => res.render('login', { title: 'Login Page' }));
 
-// User login
+// Login User
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const user = users.find(u => u.username === username);
-    if (!user) return res.send('User not found');
-
+    let { email, password } = req.body;
+    email = email.trim().toLowerCase();
+    
+    const user = await User.findOne({ email });
+    if (!user) {
+        console.log("Login failed: user not found ->", email);
+        return res.render("login", { 
+            title: "Login Page",
+            error: "User not found",
+            email
+        });
+    }
+    
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.send('Incorrect password');
-
-    const token = jwt.sign({ username: user.username }, 'secret123', { expiresIn: '1h' });
+    if (!match) {
+        console.log("Login failed: incorrect password for ->", email);
+        return res.render("login", { 
+            title: "Login Page",
+            error: "Incorrect password",
+            email
+        });
+    }
+    
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.cookie('token', token, { httpOnly: true });
+    
+    console.log("Login successful ->", email);
     res.redirect('/pets');
 });
+
+
 
 // Logout
 router.get('/logout', (req, res) => {

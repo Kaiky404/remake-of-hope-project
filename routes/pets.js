@@ -1,5 +1,8 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 const router = express.Router();
 
 // Middleware to protect routes
@@ -8,7 +11,7 @@ function authMiddleware(req, res, next) {
     if (!token) return res.redirect('/auth/login');
 
     try {
-        jwt.verify(token, 'secret123');
+        jwt.verify(token, process.env.JWT_SECRET);
         next();
     } catch (err) {
         return res.redirect('/auth/login');
