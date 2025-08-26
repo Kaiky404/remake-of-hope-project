@@ -1,0 +1,52 @@
+### 🔑 **Autenticação e Autorização**
+
+* [x] Login e logout (já tem).
+* [x] Registro de usuários com **hash de senha (bcrypt)**.
+* [x] Diferenciar níveis de acesso (ex: `user` vs `admin`).
+* [ ] Proteger rotas específicas (já começou com `authMiddleware`).
+
+---
+
+### 🐶 **Pets (CRUD Completo)**
+
+* [x] Criar pet.
+* [x] Listar pets do usuário logado.
+* [ ] Editar pet.
+* [ ] Excluir pet.
+* [x] Validar dados (sem duplicados, sem campos vazios).
+
+---
+
+### 🎨 **Interface (Views)**
+
+* [ ] Mostrar lista de pets cadastrados (nome, idade, tipo).
+* [ ] Formulário de edição/exclusão ao lado de cada pet.
+* [ ] Feedback de erros e sucessos (ex: “Pet adicionado com sucesso!”).
+* [ ] Melhorar navegação (navbar com links claros: Home | Meus Pets | Logout).
+
+---
+
+### ⚙️ **Melhorias de Back-end**
+
+* [ ] Usar **dotenv** (já usa) corretamente para separar dev/prod.
+* [x] Logging básico (ex: `kleber` para requests).
+* [x] Separar rotas em pastas (`routes/pets.js`, `routes/auth.js`).
+* [ ] Tratar erros globais com middleware (`errorHandler`).
+
+---
+
+### 🛡️ **Segurança**
+
+* [x] Hash de senhas (se não implementou ainda).
+* [x] Usar cookies com `httpOnly` e `secure`.
+* [ ] Sanitizar inputs para evitar XSS/Injection.
+
+---
+
+### 📦 **Extras (se quiser ir além do que a facul pedia)**
+
+* [ ] Upload de imagem para cada pet (ex: foto de perfil do pet 🐕).
+* [ ] Dashboard com estatísticas (ex: quantos pets cadastrados).
+* [ ] API REST separada (ex: `/api/pets`) + consumo via AJAX.
+* [ ] Deploy em algum lugar gratuito (Render, Vercel, Railway).
+* [x] Banco em nuvem (MongoDB Atlas).

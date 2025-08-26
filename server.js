@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import indexRouter from './routes/index.js';
 import authRouter from './routes/auth.js';
 import petsRouter from './routes/pets.js';
+import adminRoutes from './routes/admin.js';
 import mongoose from "mongoose";
 
 
@@ -16,6 +17,9 @@ mongoose.connect(process.env.DB_URL)
   .catch(err => console.error("Connection error:", err));
 
 hbs.registerPartials(path.join(process.cwd(), './views/partials'));
+hbs.registerHelper('eq', function(a, b) {
+  return a === b;
+});
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -29,5 +33,6 @@ app.set('views', path.join(process.cwd(), 'views'));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/pets', petsRouter);
+app.use('/admin', adminRoutes);
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
