@@ -14,7 +14,7 @@
     } else {
       document.body.classList.remove('dark-mode');
       if (themeSwitch) themeSwitch.checked = false;
-      if (dogImage) dogImage.src = "/img/shepherd.png";
+      if (dogImage) dogImage.src = "/img/bordercolie.png";
     }
 
     if (themeSwitch) {
@@ -25,7 +25,7 @@
           localStorage.setItem('theme', 'dark');
         } else {
           document.body.classList.remove('dark-mode');
-          if (dogImage) dogImage.src = "/img/shepherd.png";
+          if (dogImage) dogImage.src = "/img/bordercolie.png";
           localStorage.setItem('theme', 'light');
         }
       });

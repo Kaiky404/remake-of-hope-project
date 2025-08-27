@@ -9,7 +9,6 @@ import petsRouter from './routes/pets.js';
 import adminRoutes from './routes/admin.js';
 import mongoose from "mongoose";
 
-
 dotenv.config();
 
 mongoose.connect(process.env.DB_URL)
