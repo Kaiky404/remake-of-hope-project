@@ -2,3 +2,35 @@
 <footer>
     <p>&copy; 2025 Kaiky. All rights reserved.</p>
 </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const themeSwitch = document.getElementById('theme-switch');
+    const dogImage = document.getElementById('dog-image');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      if (themeSwitch) themeSwitch.checked = true;
+      if (dogImage) dogImage.src = "/img/doberman.png";
+    } else {
+      document.body.classList.remove('dark-mode');
+      if (themeSwitch) themeSwitch.checked = false;
+      if (dogImage) dogImage.src = "/img/shepherd.png";
+    }
+
+    if (themeSwitch) {
+      themeSwitch.addEventListener('change', () => {
+        if (themeSwitch.checked) {
+          document.body.classList.add('dark-mode');
+          if (dogImage) dogImage.src = "/img/doberman.png";
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('dark-mode');
+          if (dogImage) dogImage.src = "/img/shepherd.png";
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    }
+  });
+</script>
+
+
