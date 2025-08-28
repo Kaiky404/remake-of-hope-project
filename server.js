@@ -8,6 +8,7 @@ import authRouter from './routes/auth.js';
 import petsRouter from './routes/pets.js';
 import adminRoutes from './routes/admin.js';
 import mongoose from "mongoose";
+import methodOverride from 'method-override';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ hbs.registerHelper('eq', function(a, b) {
 });
 
 const app = express();
+app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());

@@ -22,6 +22,47 @@ body {
     font-size: 1em;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background: #222;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  color: white;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.listheader {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.pet-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
 .main-page {
     padding: 20px;
     display: flex;
@@ -31,6 +72,31 @@ body {
     gap: 20px;
 }
 
+.listmain {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.listmain li {
+    background-color: var(--primary-color);
+    padding: 15px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.listmain li:hover {
+    background-color: var(--mid-color);
+    transition: background-color 0.2s ease;
+    cursor: default;
+}
 
 .main-page > div {
     margin: auto 0;

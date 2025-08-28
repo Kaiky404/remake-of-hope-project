@@ -18,6 +18,7 @@ router.get('/', authMiddleware, async (req, res) => {
         }
         res.render('pets', { 
             pets: pets.map(p => ({
+                id: p._id.toString(),
                 name: p.name,
                 type: p.type,
                 age: p.age,
@@ -77,7 +78,7 @@ router.patch('/edit/:id', authMiddleware, async (req, res) => {
         pet.age = age
         await pet.save()
 
-        res.json({ message: 'Pet updated', pet })
+        res.redirect('/pets');
 
     } catch (e) {
         console.error('Error editing pet:', e)
@@ -100,7 +101,7 @@ router.delete('/delete/:id', authMiddleware, async (req, res) => {
         }
 
         await pet.deleteOne()
-        res.json({ message: 'Pet deleted' })
+        res.redirect('/pets');
 
     } catch (e) {
         console.error('Error deleting pet:', e)

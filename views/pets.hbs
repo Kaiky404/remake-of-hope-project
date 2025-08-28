@@ -8,29 +8,37 @@
 <body>
     {{> header.sys }}
     <main class="content">
-        <h2>Add a Pet</h2>
-        <form action="/pets/add" method="POST">
-            <label>Name:</label>
-            <input type="text" name="name" required><br>
-            <label>Type:</label>
-            <input type="text" name="type" required><br>
-            <label>Age:</label>
-            <input type="number" name="age" required><br>
-            <button type="submit">Add Pet</button>
-        </form>
+        <div class="listheader">
+            <h1>Pet Management</h1>
+            <img class="icon add-btn" src="/img/add.png">
+        </div>
 
-        <h2>Pets List</h2>
-        <ul>
+        <ul class="listmain">
             {{#each pets}}
-                <li>
+                <li class="pet-item" 
+                    data-id="{{this.id}}" 
+                    data-name="{{this.name}}" 
+                    data-type="{{this.type}}" 
+                    data-age="{{this.age}}">
                     {{this.name}} - {{this.type}} - {{this.age}} years old
                     {{#if (eq ../user.role "admin")}}
                         (Owner: {{this.owner}})
                     {{/if}}
+                    <img class="icon edit-btn" src="/img/edit.png">
+                    <img class="icon delete-btn" src="/img/trash.png">
                 </li>
             {{/each}}
         </ul>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+
     </main>
+
     {{> footer.sys }}
 </body>
 </html>
